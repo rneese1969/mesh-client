@@ -1,0 +1,3435 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Cross-platform desktop client for Meshtastic, MeshCore, and Reticulum (LXMF) mesh networks.">
+      
+      
+      
+        <link rel="canonical" href="https://colorado-mesh.github.io/mesh-client/release-process/">
+      
+      
+        <link rel="prev" href="../ci-cd/">
+      
+      
+        <link rel="next" href="../service-announcements/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Release Process - Colorado Mesh Client</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#release-process" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Colorado Mesh Client" class="md-header__button md-logo" aria-label="Colorado Mesh Client" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Colorado Mesh Client
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Release Process
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Colorado-Mesh/mesh-client" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Colorado-Mesh/mesh-client
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../install/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Install
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../features/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Features
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reticulum-setup-guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../troubleshooting/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Support
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../development-environment/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../license/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Project
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Colorado Mesh Client" class="md-nav__button md-logo" aria-label="Colorado Mesh Client" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    Colorado Mesh Client
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Colorado-Mesh/mesh-client" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Colorado-Mesh/mesh-client
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reticulum-setup-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reticulum Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reticulum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reticulum
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emcomm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EMCOMM (MECP & Incident Command)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../key-backup-and-crypto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Backup & Crypto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meshtastic-telemetry-local-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meshtastic Telemetry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notification-sounds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notification Sounds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../localization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Localization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Support
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting-meshcore/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MeshCore Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting-reticulum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reticulum Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagnostics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../log-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Log Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://coloradomesh.org/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development-environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../accessibility-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accessibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../style-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Style Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ci-cd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Process
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-schema-upgrades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database schema upgrades
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-cut-release-from-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended: Cut release from GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-fallback-pnpm-run-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local fallback: pnpm run release
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Local fallback: pnpm run release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mid-release-metainfo-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mid-release MetaInfo failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macos-code-signing-and-notarization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS code signing and notarization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="macOS code signing and notarization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-github-actions-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required GitHub Actions secrets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-secret-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial-secret validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-verification-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual verification (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-version-bump-fallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual version bump (fallback)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitor-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitor workflows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitor workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#releaseyaml-buildrelease-electron-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        release.yaml (Build/Release Electron App)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flatpakyaml-build-flatpak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        flatpak.yaml (Build Flatpak)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reticulum-sidecar-in-installers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reticulum sidecar in installers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-the-draft-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify the draft release
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verify the draft release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repair-windows-updater-assets-on-an-already-published-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repair Windows updater assets on an already-published release
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publish-the-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publish the release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version naming
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-release-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-release checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#release-workflow-fails-on-one-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release workflow fails on one platform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upload-to-draft-release-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload to draft release fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-draft-releases-for-one-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Duplicate draft releases for one tag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tag-already-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tag already exists
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-fails-due-to-native-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build fails due to native modules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flatpak-publish-did-not-attach-bundles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flatpak publish did not attach bundles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-release-emergency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual release (emergency)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related docs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service-announcements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service Announcements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meshcore-meshtastic-parity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meshtastic & MeshCore Parity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reticulum-development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reticulum Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reticulum-sidecar-ipc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reticulum Sidecar IPC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reticulum-games-parity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reticulum Games Parity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nomad-hosting-interop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nomad Hosting Interop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../letsmesh-mqtt-auth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LetsMesh MQTT Auth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../development/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subsystem reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_14" id="__nav_6_14_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Subsystem reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/architecture-quick-ref/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture quick reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/common-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common issues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/renderer-hooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Renderer hooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/ble-serial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BLE and serial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/chat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/connection-panel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connection panel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/meshtastic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meshtastic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/mqtt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MQTT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/meshcore-repeaters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MeshCore Repeaters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/meshcore-rooms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MeshCore Rooms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/emcomm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EMCOMM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/mecp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MECP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/offline-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/settings-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../third-party-licenses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Third-party licenses
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-schema-upgrades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database schema upgrades
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-cut-release-from-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended: Cut release from GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-fallback-pnpm-run-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local fallback: pnpm run release
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Local fallback: pnpm run release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mid-release-metainfo-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mid-release MetaInfo failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macos-code-signing-and-notarization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS code signing and notarization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="macOS code signing and notarization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-github-actions-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required GitHub Actions secrets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-secret-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial-secret validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-verification-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual verification (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-version-bump-fallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual version bump (fallback)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitor-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitor workflows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitor workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#releaseyaml-buildrelease-electron-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        release.yaml (Build/Release Electron App)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flatpakyaml-build-flatpak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        flatpak.yaml (Build Flatpak)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reticulum-sidecar-in-installers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reticulum sidecar in installers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-the-draft-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify the draft release
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verify the draft release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repair-windows-updater-assets-on-an-already-published-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repair Windows updater assets on an already-published release
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publish-the-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publish the release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version naming
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-release-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-release checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#release-workflow-fails-on-one-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release workflow fails on one platform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upload-to-draft-release-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload to draft release fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-draft-releases-for-one-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Duplicate draft releases for one tag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tag-already-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tag already exists
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-fails-due-to-native-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build fails due to native modules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flatpak-publish-did-not-attach-bundles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flatpak publish did not attach bundles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-release-emergency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual release (emergency)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related docs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Colorado-Mesh/mesh-client/edit/main/docs/release-process.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="release-process">Release Process<a class="headerlink" href="#release-process" title="Permanent link">&para;</a></h1>
+<p>This document describes how maintainers create releases for Mesh-Client.</p>
+<hr />
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>Cut releases from <strong>Actions → Cut release</strong> (<a href="https://github.com/Colorado-Mesh/mesh-client/blob/main/.github/workflows/cut-release.yaml"><code>cut-release.yaml</code></a>), which bumps/tags <code>main</code>. Pushing an annotated version tag (<code>v*</code>) then triggers:</p>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/Colorado-Mesh/mesh-client/blob/main/.github/workflows/release.yaml"><code>release.yaml</code></a></td>
+<td>Build macOS/Linux/Windows via <code>electron-builder</code> (<code>--publish never</code>) and attach to the prepare draft</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Colorado-Mesh/mesh-client/blob/main/.github/workflows/flatpak.yaml"><code>flatpak.yaml</code></a></td>
+<td>Build Reticulum sidecar + Flatpak bundles (x86_64 and aarch64) and attach them to the same draft</td>
+</tr>
+</tbody>
+</table>
+<p>Both workflows upload to a <strong>draft</strong> GitHub Release. A maintainer reviews artifacts and publishes manually when ready.</p>
+<p><code>prepare-github-release</code> is the <strong>only</strong> job that creates the draft (<code>MESH_CLIENT_ALLOW_DRAFT_CREATE=1</code>). Matrix builds and Flatpak attach with <code>ci-upload-release-assets.mjs</code> by <code>release_id</code> so parallel jobs cannot fork duplicate drafts. <code>electron-builder.yml</code> still sets <code>releaseType: draft</code> for local <code>dist:*:publish</code> use.</p>
+<p>Documentation deploys separately: <a href="https://github.com/Colorado-Mesh/mesh-client/blob/main/.github/workflows/docs.yml"><code>docs.yml</code></a> runs on every push to <code>main</code> (including the version-bump commit from <code>pnpm run release</code>).</p>
+<h3 id="database-schema-upgrades">Database schema upgrades<a class="headerlink" href="#database-schema-upgrades" title="Permanent link">&para;</a></h3>
+<p><code>CURRENT_SCHEMA_VERSION</code> in <a href="https://github.com/Colorado-Mesh/mesh-client/blob/main/src/main/db-schema-sync.ts"><code>src/main/db-schema-sync.ts</code></a> is the on-disk SQLite <code>user_version</code> this build supports. Schema upgrades are <strong>one-way</strong>:</p>
+<ul>
+<li><strong>CI:</strong> <code>schema-release-compare</code> (Build Binaries, Build Flatpak, and Release) warns when this build’s schema is newer than the last published release. Test builds also upload a <code>READ-ME-FIRST-*.md</code> artifact with the download set.</li>
+<li><strong>Installers:</strong> when bumped, Windows NSIS shows an advisory MessageBox; macOS/Linux/Flatpak packages may include <code>SCHEMA-UPGRADE.txt</code> in app resources.</li>
+<li><strong>App launch:</strong> if an existing database’s <code>user_version</code> is behind this build, Mesh-Client shows a blocking <strong>Quit / Upgrade</strong> dialog <strong>before</strong> running <code>runSchemaUpgrade</code>. Quit leaves the database unchanged. Set <code>MESH_CLIENT_ACCEPT_SCHEMA_UPGRADE=1</code> to auto-accept (E2E / automation only).</li>
+<li><strong>Too new:</strong> opening a database upgraded by a newer app with an older build still fails with the existing schema-too-new fatal dialog.</li>
+</ul>
+<hr />
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Maintainer access to the repository</li>
+<li>On branch <strong><code>main</code></strong>, up to date with <code>origin/main</code></li>
+<li>Clean working directory (no uncommitted changes)</li>
+<li>For <code>pnpm run release</code> pre-flight: <strong>actionlint</strong> and <strong>yamllint</strong> installed (or run <code>pnpm run setup:actionlint</code> and install yamllint via pip/brew — see <a href="../development-environment/#8-helper-scripts-auto-install-where-possible">Development Guide</a>)</li>
+<li>For <code>pnpm run release</code> pre-flight: <strong>flatpak-node-generator</strong> on <code>PATH</code> (same pin as Flatpak CI — see <a href="../development-environment/#building-a-flatpak-linux">Building a Flatpak</a> / <code>pnpm run check:flatpak-offline-pnpm</code> install hint)</li>
+</ul>
+<hr />
+<h2 id="recommended-cut-release-from-github-actions">Recommended: Cut release from GitHub Actions<a class="headerlink" href="#recommended-cut-release-from-github-actions" title="Permanent link">&para;</a></h2>
+<p><strong>Preferred path:</strong> Actions → <strong>Cut release</strong> (<a href="https://github.com/Colorado-Mesh/mesh-client/blob/main/.github/workflows/cut-release.yaml"><code>cut-release.yaml</code></a>).</p>
+<ol>
+<li>Confirm the latest <strong>Release preflight</strong> job in the daily <strong>E2E</strong> run (<a href="https://github.com/Colorado-Mesh/mesh-client/blob/main/.github/workflows/e2e.yaml"><code>e2e.yaml</code></a>) on <code>main</code> is green, or dispatch E2E. The job runs the full <code>release.sh</code> pre-flight (<code>--preflight-only</code>) on a fresh runner using the same composites as Cut release (<code>setup-node-pnpm</code>, <code>setup-release-toolchain</code>), so release-only breakage surfaces without burning a cut. It is not a PR gate, so check it after merging release-plumbing changes. Locally: <code>pnpm run release --preflight-only</code> (any branch; no pull, dep update, bump, tag, or push).</li>
+<li>(Optional) Run once with <strong>dry_run</strong> checked to confirm the computed version in the job summary (<code>feat(scope):</code> → minor, etc.). Dry run only previews the version; it does not run pre-flight.</li>
+<li>Re-run with dry_run unchecked. Default bump is <strong>auto</strong>; override with <code>patch</code> / <code>minor</code> / <code>major</code> / exact <code>X.Y.Z</code> when needed.</li>
+<li><strong>skip_dep_update</strong> defaults to <strong>true</strong> — bump dependencies in a normal PR via <code>pnpm run update</code> before cutting.</li>
+<li>The workflow sets <code>MESH_CLIENT_RELEASE_YES=1</code> (non-interactive). It validates, bumps, commits, and tags with <code>--prepare-only</code> while no push credential is present, then exposes the admin token only to a final <code>--push-only</code> step. Checkout never persists credentials.</li>
+<li>Wait for <code>release.yaml</code> + <code>flatpak.yaml</code> to attach draft artifacts, then <strong>Publish</strong> on GitHub.</li>
+</ol>
+<p><strong>Protected boundary:</strong> <code>cut-release.yaml</code> runs only from <code>main</code> in the <code>release-cut</code> environment and uses its <code>RELEASE_CUT_TOKEN</code>. Use a fine-grained PAT (or GitHub App installation token) owned by a repo <strong>admin</strong>, with <strong>contents: write</strong> and <strong>workflows: write</strong>. Plain <code>GITHUB_TOKEN</code> cannot trigger the tag workflows or push past the merge-queue ruleset. A required environment reviewer must approve the real cut; dry runs do not receive the admin token.</p>
+<p>Version detection lives in <a href="https://github.com/Colorado-Mesh/mesh-client/blob/main/scripts/detectReleaseBump.mjs"><code>scripts/detectReleaseBump.mjs</code></a> (handles scoped Conventional Commits such as <code>feat(rrc): …</code>). Do not set <code>MESH_CLIENT_RELEASE_PARSE_ONLY</code> in Actions (test-only hook; Cut release clears it).</p>
+<hr />
+<h2 id="local-fallback-pnpm-run-release">Local fallback: <code>pnpm run release</code><a class="headerlink" href="#local-fallback-pnpm-run-release" title="Permanent link">&para;</a></h2>
+<p>Local <code>scripts/release.sh</code> remains for emergencies when Actions is unavailable. It:</p>
+<ol>
+<li>Verifies you are on <code>main</code> and pulls latest</li>
+<li>Runs <strong><code>pnpm update</code></strong> and <strong><code>pnpm dedupe</code></strong> (updates lockfile before the bump)</li>
+<li>Syncs <strong><code>org.coloradomesh.MeshClient.yml</code></strong> Electron vendored archives to match <code>package.json</code> (<code>node scripts/sync-flatpak-electron.mjs</code>)</li>
+<li>Auto-detects <strong>patch / minor / major</strong> via <a href="https://github.com/Colorado-Mesh/mesh-client/blob/main/scripts/detectReleaseBump.mjs"><code>detectReleaseBump.mjs</code></a> (scoped Conventional Commits such as <code>feat(rrc):</code> count as <strong>minor</strong>) since the last tag (or accept an explicit bump — see below)</li>
+<li>Runs <strong>pre-flight validation</strong> (<code>check:environment</code>, release CLI health, format, lint, typecheck, <strong>all</strong> <code>check:*</code> scanners including path-gated pre-commit ones, <strong><code>check:flatpak</code></strong>, <strong><code>check:flatpak-offline-pnpm</code></strong>, <strong><code>check:i18n</code></strong>, lockfile re-dedupe stability (not <code>pnpm dedupe --check</code> — that breaks hoisted <code>node_modules/.bin</code>), audit, <strong>required</strong> actionlint + yamllint, <strong>full</strong> Vitest via <code>pnpm run test:run</code>, Reticulum sidecar <code>cargo test</code>)</li>
+<li>Prints <strong>copy-paste release notes</strong> grouped by feat/fix/other/breaking</li>
+<li>Bumps <code>package.json</code> via <code>pnpm version</code></li>
+<li>Prepends a <code>&lt;release&gt;</code> entry to <code>flatpak/org.coloradomesh.MeshClient.metainfo.xml</code></li>
+<li>Commits, creates an annotated tag, and pushes <strong>commit + tag</strong> to <code>origin</code></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>main
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>pnpm<span class="w"> </span>run<span class="w"> </span>release<span class="w">                               </span><span class="c1"># auto-detect bump from commits since last tag</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>pnpm<span class="w"> </span>run<span class="w"> </span>release<span class="w"> </span>minor<span class="w">                         </span><span class="c1"># force minor</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>pnpm<span class="w"> </span>run<span class="w"> </span>release<span class="w"> </span><span class="m">5</span>.21.0<span class="w">                        </span><span class="c1"># force exact version</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>pnpm<span class="w"> </span>run<span class="w"> </span>release<span class="w"> </span>--auto<span class="w">                        </span><span class="c1"># explicit auto-detect</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>pnpm<span class="w"> </span>run<span class="w"> </span>release<span class="w"> </span>--finish<span class="w">                      </span><span class="c1"># complete a mid-release after package.json was already bumped</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>pnpm<span class="w"> </span>run<span class="w"> </span>release<span class="w"> </span>--yes<span class="w">                         </span><span class="c1"># non-interactive (skip both confirmation prompts)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>pnpm<span class="w"> </span>run<span class="w"> </span>release<span class="w"> </span>--yes<span class="w"> </span>--skip-dep-update<span class="w"> </span>patch<span class="w"> </span><span class="c1"># CI-style: no pnpm update</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>pnpm<span class="w"> </span>run<span class="w"> </span>release<span class="w"> </span>patch<span class="w"> </span>--prepare-only<span class="w">          </span><span class="c1"># validate, commit, and tag without pushing</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>pnpm<span class="w"> </span>run<span class="w"> </span>release<span class="w"> </span>--push-only<span class="w">                   </span><span class="c1"># push that clean prepared release</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="nv">MESH_CLIENT_RELEASE_YES</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>pnpm<span class="w"> </span>run<span class="w"> </span>release<span class="w">     </span><span class="c1"># same as --yes (avoids pnpm's own -y)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># Invalid: --auto cannot be combined with patch|minor|major|x.x.x</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># Note: `pnpm run release -- minor` is fine — pnpm 11 forwards bare `--`; release.sh ignores it.</span>
+</code></pre></div>
+<p>The script prompts twice by default (start pre-flight, then confirm after checks pass). Pass <strong><code>--yes</code></strong> after <code>pnpm run release</code> (or set <code>MESH_CLIENT_RELEASE_YES=1</code>) to skip those prompts — useful for automation. <strong><code>--auto</code> plus an explicit bump is rejected.</strong> <code>--push-only</code> fails closed unless the checkout is clean and the annotated package-version tag points at an exact <code>chore: release vX.Y.Z</code> HEAD. <strong>Expect several minutes</strong> for the full validation chain.</p>
+<p><strong>Full suite only:</strong> Release must never use <code>test:staged</code>, <code>test:changed</code>, or <code>vitest related</code>. Pre-commit and pull-request CI may run affected subsets for speed; release matches protected merge-queue CI by running the unrestricted <code>pnpm run test:run</code> (<code>vitest run</code>) and does not soft-skip actionlint/yamllint when those tools are missing.</p>
+<p>If pre-flight fails, fix the issue on <code>main</code> and cut again — do not tag manually until checks pass.</p>
+<h3 id="mid-release-metainfo-failure">Mid-release MetaInfo failure<a class="headerlink" href="#mid-release-metainfo-failure" title="Permanent link">&para;</a></h3>
+<p>If <code>package.json</code> was already bumped but the Flatpak MetaInfo <code>&lt;release&gt;</code> entry is wrong/corrupt (or the release commit was blocked by <code>check:flatpak</code>):</p>
+<ol>
+<li><strong>Do not</strong> re-run <code>pnpm run release</code> — that would bump again.</li>
+<li>Fix the top <code>&lt;release version="…"&gt;</code> in <code>flatpak/org.coloradomesh.MeshClient.metainfo.xml</code> to match <code>package.json</code>’s <code>version</code>.</li>
+<li>Complete with <code>pnpm run release --finish</code> (commit + tag + push; no version bump, no full preflight replay).</li>
+</ol>
+<p>The version written into MetaInfo always comes from <code>package.json</code> after <code>pnpm version</code> (never from <code>pnpm version</code> stdout).</p>
+<hr />
+<h2 id="macos-code-signing-and-notarization">macOS code signing and notarization<a class="headerlink" href="#macos-code-signing-and-notarization" title="Permanent link">&para;</a></h2>
+<p>Official macOS release artifacts are <strong>Developer ID signed</strong> and <strong>notarized</strong> when repository secrets are configured. <a href="https://github.com/Colorado-Mesh/mesh-client/blob/main/electron-builder.yml"><code>electron-builder.yml</code></a> sets <code>hardenedRuntime: true</code> and <code>notarize: true</code>; electron-builder skips notarization automatically when no signing certificate is available (local/fork builds).</p>
+<h3 id="required-github-actions-secrets">Required GitHub Actions secrets<a class="headerlink" href="#required-github-actions-secrets" title="Permanent link">&para;</a></h3>
+<p>Configure secrets under the named <strong>Settings → Environments</strong> boundary, not at repository scope:</p>
+<table>
+<thead>
+<tr>
+<th>Environment</th>
+<th>Secret(s)</th>
+<th>Allowed ref / approval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>release</code></strong></td>
+<td><code>CSC_LINK</code>, <code>CSC_KEY_PASSWORD</code>, <code>APPLE_ID</code>, <code>APPLE_APP_SPECIFIC_PASSWORD</code>, <code>APPLE_TEAM_ID</code></td>
+<td>Protected <code>v*</code> tag; required maintainer approval</td>
+</tr>
+<tr>
+<td><strong><code>release-cut</code></strong></td>
+<td><code>RELEASE_CUT_TOKEN</code></td>
+<td><code>main</code>; required maintainer approval for release cuts and license-update PRs</td>
+</tr>
+<tr>
+<td><strong><code>release-repair</code></strong></td>
+<td>No custom secret; the workflow uses its job-scoped <code>GITHUB_TOKEN</code></td>
+<td><code>main</code>; required maintainer approval</td>
+</tr>
+</tbody>
+</table>
+<p><code>release.yaml</code> alone receives the Apple/CSC credentials, and only its <strong><code>macos-latest</code></strong> matrix leg uses them. <code>build.yaml</code> never receives signing secrets and explicitly disables certificate discovery, so arbitrary-ref manual packages remain unsigned. The one-time <code>migrate-release-secrets.yaml</code> workflow verifies the live environment policies and protected-tag ruleset before moving credentials, deletes the six legacy repository-wide secrets, and removes itself after success. No release credential should remain repository-scoped.</p>
+<h3 id="partial-secret-validation">Partial-secret validation<a class="headerlink" href="#partial-secret-validation" title="Permanent link">&para;</a></h3>
+<p>Before the macOS build step, <a href="https://github.com/Colorado-Mesh/mesh-client/blob/main/.github/workflows/release.yaml"><code>release.yaml</code></a> runs <strong>Validate macOS signing secrets</strong> when <code>CSC_LINK</code> is non-empty on tag releases. If any of <code>CSC_KEY_PASSWORD</code>, <code>APPLE_ID</code>, <code>APPLE_APP_SPECIFIC_PASSWORD</code>, or <code>APPLE_TEAM_ID</code> is missing, the job <strong>fails early</strong> with a clear list — avoids a signed-but-unnotarized upload that Gatekeeper would reject.</p>
+<p>Fork workflows and local <code>pnpm run dist:mac</code> without these env vars produce <strong>unsigned</strong> <code>.dmg</code> / <code>.zip</code> bundles (still validated by <code>verify-mac-packaging.mjs</code>). See <a href="../ci-cd/#macos-packaging-verify-verify-mac-packagingmjs">CI/CD — macOS packaging verify</a>.</p>
+<hr />
+<h2 id="manual-verification-optional">Manual verification (optional)<a class="headerlink" href="#manual-verification-optional" title="Permanent link">&para;</a></h2>
+<p>If you need to run checks outside <code>release.sh</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pnpm<span class="w"> </span>run<span class="w"> </span>format:check
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pnpm<span class="w"> </span>run<span class="w"> </span>lint:md
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>pnpm<span class="w"> </span>run<span class="w"> </span>lint
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>pnpm<span class="w"> </span>run<span class="w"> </span>typecheck
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>pnpm<span class="w"> </span>run<span class="w"> </span>check:i18n
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>pnpm<span class="w"> </span>run<span class="w"> </span>test:run
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>pnpm<span class="w"> </span>run<span class="w"> </span>build
+</code></pre></div>
+<p>For parity with CI packaging smoke tests after a local dist build, see <a href="../ci-cd/#release-releaseyaml">CI/CD — Release workflow</a>.</p>
+<hr />
+<h2 id="manual-version-bump-fallback">Manual version bump (fallback)<a class="headerlink" href="#manual-version-bump-fallback" title="Permanent link">&para;</a></h2>
+<p>Only if <code>pnpm run release</code> cannot be used:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Edit package.json version, then:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>git<span class="w"> </span>add<span class="w"> </span>package.json<span class="w"> </span>pnpm-lock.yaml<span class="w"> </span>org.coloradomesh.MeshClient.yml
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># If electron changed: node scripts/sync-flatpak-electron.mjs</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Add a &lt;release version="…" date="YYYY-MM-DD"/&gt; entry to flatpak/org.coloradomesh.MeshClient.metainfo.xml</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>git<span class="w"> </span>add<span class="w"> </span>flatpak/org.coloradomesh.MeshClient.metainfo.xml
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"chore: release vX.Y.Z"</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>vX.Y.Z<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Release X.Y.Z"</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>vX.Y.Z
+</code></pre></div>
+<hr />
+<h2 id="monitor-workflows">Monitor workflows<a class="headerlink" href="#monitor-workflows" title="Permanent link">&para;</a></h2>
+<h3 id="releaseyaml-buildrelease-electron-app"><code>release.yaml</code> (Build/Release Electron App)<a class="headerlink" href="#releaseyaml-buildrelease-electron-app" title="Permanent link">&para;</a></h3>
+<p>Matrix build jobs:</p>
+<ul>
+<li><strong><code>macos-latest</code></strong> → <code>pnpm run dist:mac</code> then <code>ci-upload-release-assets.mjs</code></li>
+<li><strong><code>ubuntu-latest</code></strong> → <code>pnpm run dist:linux</code> (x64 + arm64 AppImage, <code>.deb</code>, <code>.rpm</code>) then upload</li>
+<li><strong><code>windows-latest</code></strong> → <code>pnpm run dist:win</code> (x64 + arm64 NSIS installers) then upload</li>
+</ul>
+<p>Each job runs <code>pnpm install --frozen-lockfile</code>, <code>pnpm run rebuild</code>, builds with <code>--publish never</code>, then attaches artifacts to the prepare draft with <strong><code>GITHUB_TOKEN</code></strong> as <code>GH_TOKEN</code>.</p>
+<p>After builds finish, <strong><code>packaging-smoke</code></strong> runs on:</p>
+<ul>
+<li>macOS — <code>verify-mac-packaging.mjs</code> (includes bundled Reticulum sidecar in <code>.app</code>)</li>
+<li>Linux — <code>verify-linux-packaging.mjs</code> plus <code>test-linux-appimage-reticulum-sidecar.mjs</code> (extracts x64/arm64 AppImages and asserts sidecar). <strong><code>verify-linux-packaging.mjs</code></strong> also asserts each <code>.deb</code> <strong>Description</strong> field is ASCII-only (no mojibake <code>??</code>) via <code>dpkg-deb -f</code> — non-ASCII control metadata breaks some package managers and mirrors.</li>
+<li>Windows x64 — NSIS install smoke test (<code>test-win-nsis-install.mjs</code>, asserts sidecar after install)</li>
+<li><strong><code>windows-11-vs2026-arm</code></strong> — arm64 NSIS install smoke test with 7z probe (asserts sidecar inside installer payload and after install). Uses GitHub's advance-testing WoA runner ahead of the Sept 2026 VS 2026 rollout on <code>windows-11-arm</code>.</li>
+</ul>
+<p>Build jobs also run <code>verify-reticulum-sidecar-staged.mjs</code> after staging sidecars and before <code>electron-builder</code>.</p>
+<h3 id="flatpakyaml-build-flatpak"><code>flatpak.yaml</code> (Build Flatpak)<a class="headerlink" href="#flatpakyaml-build-flatpak" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong><code>schema-release-compare</code></strong> — compares this SHA’s schema to the last published release; uploads <code>READ-ME-FIRST-flatpak.md</code> (included again beside Flatpak Actions artifacts)</li>
+<li><strong><code>reticulum-sidecar</code></strong> — builds <code>mesh-client-reticulum</code> per arch (x86_64 on <code>ubuntu-latest</code>, aarch64 on <code>ubuntu-24.04-arm</code>) with full RNS stack features</li>
+<li><strong><code>flatpak</code></strong> — stamps CI build info, writes schema upgrade notice when bumped, generates offline pnpm sources, builds <code>org.coloradomesh.MeshClient.flatpak</code> per arch inside the digest-pinned Flathub freedesktop 24.08 multi-architecture container, smoke-installs the unstamped bundle (manual <strong>Build Flatpak (no release)</strong> dispatch also renames downloadable artifacts to <code>…-run{N}.flatpak</code>; tag runs keep clean names)</li>
+<li><strong><code>publish</code></strong> (tag only) — on a bare GitHub runner, signs and verifies source/builder/bundle-digest provenance, waits for the Electron prepare draft (<code>ci-wait-github-draft-release.mjs</code>), then attaches both clean-named <code>.flatpak</code> files and their Sigstore attestation with <code>ci-upload-release-assets.mjs</code> using the shared <code>release_id</code> (never creates or publishes a release)</li>
+</ol>
+<p>Both tag-triggered workflows must complete before the release is fully populated. Flatpak bundles often arrive a few minutes after the Electron artifacts.</p>
+<h3 id="reticulum-sidecar-in-installers">Reticulum sidecar in installers<a class="headerlink" href="#reticulum-sidecar-in-installers" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Flatpak:</strong> sidecar is built in CI and embedded under <code>resources/reticulum-sidecar/</code> before <code>flatpak-builder</code> runs.</li>
+<li><strong>macOS / Linux / Windows (Electron):</strong> <code>release.yaml</code> / <code>build.yaml</code> run <code>scripts/build-reticulum-sidecar-release.mjs</code> per platform before <code>dist:*</code>, staging per-arch binaries under <code>resources/reticulum-sidecar/staged/</code>. The <code>beforePack</code> hook in <a href="https://github.com/Colorado-Mesh/mesh-client/blob/main/electron-builder.yml"><code>electron-builder.yml</code></a> copies the correct <code>mesh-client-reticulum</code> binary into each installer (Windows x64 + arm64, Linux x64 + arm64, macOS x64 + arm64). Packaging verify scripts assert the sidecar is present in unpacked bundles.</li>
+<li><strong>Releases before this pipeline shipped</strong> may show “Reticulum sidecar not built” in packaged installs — upgrade to a release that includes the sidecar or use Flatpak on Linux.</li>
+<li><strong>Dev builds</strong> use <code>reticulum-sidecar/target/debug/</code> instead — see <a href="../development-environment/#reticulum-sidecar-optional">Reticulum sidecar (optional)</a>.</li>
+</ul>
+<hr />
+<h2 id="verify-the-draft-release">Verify the draft release<a class="headerlink" href="#verify-the-draft-release" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Go to GitHub → <strong>Releases</strong></li>
+<li>Open the new <strong>draft</strong> for the version tag</li>
+<li>Confirm the release <strong>tag</strong> is <code>vX.Y.Z</code> (not <code>untagged-*</code> — a wrong tag breaks the in-app updater footer and AUR/<code>mesh-client-bin</code> download URLs). Finalize CI fails if any matching release is still <code>untagged-*</code>; if Publish lands on a leftover placeholder, a maintainer must manually dispatch <strong>Repair published release tag</strong> and approve its <code>release-repair</code> environment.</li>
+<li>Confirm artifacts:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Artifacts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>macOS</td>
+<td><code>.dmg</code> and <code>.zip</code> (x64 and arm64)</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td><code>.AppImage</code>, <code>.deb</code>, <code>.rpm</code> (x64 and arm64)</td>
+</tr>
+<tr>
+<td>Linux Flatpak</td>
+<td><code>org.coloradomesh.MeshClient-x86_64.flatpak</code>, <code>org.coloradomesh.MeshClient-aarch64.flatpak</code>, and <code>mesh-client-flatpak-attestation.sigstore.json</code></td>
+</tr>
+<tr>
+<td>Windows x64</td>
+<td><code>Mesh-client-Setup-{version}.exe</code></td>
+</tr>
+<tr>
+<td>Windows arm64</td>
+<td><code>Mesh-client-Setup-{version}-arm64.exe</code> (Windows 11 on ARM — not the x64 installer)</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Paste or edit release notes (use the block printed by <code>pnpm run release</code>, or GitHub’s generated notes)</li>
+<li>Optionally smoke-test downloads on one platform per family</li>
+</ol>
+<p>Until you click <strong>Publish release</strong>, the tag exists but the release stays hidden from the public Releases page.</p>
+<p><code>finalize-github-release</code> runs <code>scripts/assert-github-release-update-yml.mjs</code> so every <code>latest.yml</code> / <code>latest-mac.yml</code> / <code>latest-linux.yml</code> / <code>latest-linux-arm64.yml</code> <code>url</code> is an exact GitHub asset name. Windows Setup names must be hyphenated (<code>Mesh-client-Setup-{version}.exe</code>). Spaced names become dotted on upload and the in-app updater 404s.</p>
+<h3 id="repair-windows-updater-assets-on-an-already-published-release">Repair Windows updater assets on an already-published release<a class="headerlink" href="#repair-windows-updater-assets-on-an-already-published-release" title="Permanent link">&para;</a></h3>
+<p>If <code>latest.yml</code> lists hyphenated Setup names but the release only has dotted GitHub names (<code>Mesh-client.Setup.{version}.exe</code>):</p>
+<ol>
+<li>Download the existing x64 and arm64 NSIS binaries from the release (dotted names).</li>
+<li>Re-upload the <strong>same files</strong> as extra assets named <code>Mesh-client-Setup-{version}.exe</code> and <code>Mesh-client-Setup-{version}-arm64.exe</code>. Keep the dotted files.</li>
+<li>Confirm <code>https://github.com/Colorado-Mesh/mesh-client/releases/download/v{version}/Mesh-client-Setup-{version}.exe</code> returns 302, not 404.</li>
+</ol>
+<p>Example for v5.36.0 (run from a temp dir after <code>gh auth login</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>gh<span class="w"> </span>release<span class="w"> </span>download<span class="w"> </span>v5.36.0<span class="w"> </span>--pattern<span class="w"> </span><span class="s1">'Mesh-client.Setup.5.36.0.exe'</span><span class="w"> </span>--pattern<span class="w"> </span><span class="s1">'Mesh-client.Setup.5.36.0-arm64.exe'</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>mv<span class="w"> </span>Mesh-client.Setup.5.36.0.exe<span class="w"> </span>Mesh-client-Setup-5.36.0.exe
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>mv<span class="w"> </span>Mesh-client.Setup.5.36.0-arm64.exe<span class="w"> </span>Mesh-client-Setup-5.36.0-arm64.exe
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>gh<span class="w"> </span>release<span class="w"> </span>upload<span class="w"> </span>v5.36.0<span class="w"> </span>Mesh-client-Setup-5.36.0.exe<span class="w"> </span>Mesh-client-Setup-5.36.0-arm64.exe
+</code></pre></div>
+<p>v5.36.0 already has both dotted and hyphenated Setup assets (repaired 2026-09-13). Repeat only for an older tag that still 404s. The next tag still needs hyphenated names from CI (<code>normalize-win-setup-artifact-names.mjs</code>).</p>
+<hr />
+<h2 id="publish-the-release">Publish the release<a class="headerlink" href="#publish-the-release" title="Permanent link">&para;</a></h2>
+<p>When artifacts and notes look correct:</p>
+<ol>
+<li>Edit the draft if needed (summary, breaking changes, contributors)</li>
+<li>Click <strong>Publish release</strong></li>
+</ol>
+<hr />
+<h2 id="version-naming">Version naming<a class="headerlink" href="#version-naming" title="Permanent link">&para;</a></h2>
+<p>Follow <a href="https://semver.org/">Semantic Versioning</a>. Auto-detect is implemented in <a href="https://github.com/Colorado-Mesh/mesh-client/blob/main/scripts/detectReleaseBump.mjs"><code>scripts/detectReleaseBump.mjs</code></a> (called from <code>release.sh</code> / Cut release):</p>
+<ul>
+<li><strong>Major (X.0.0):</strong> <code>type!:</code> / <code>type(scope)!:</code>, or a line-anchored <code>BREAKING CHANGE:</code> / <code>BREAKING-CHANGE:</code> footer in a commit body</li>
+<li><strong>Minor (0.X.0):</strong> New features (<code>feat:</code> or <code>feat(scope):</code>), backward compatible</li>
+<li><strong>Patch (0.0.X):</strong> Fixes and other conventional commits without <code>feat:</code></li>
+</ul>
+<p>Release notes “Breaking Changes” use the same subject bang + footer rules (not subject-only).</p>
+<hr />
+<h2 id="post-release-checklist">Post-release checklist<a class="headerlink" href="#post-release-checklist" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Draft release shows all platform artifacts (including both Flatpak arches)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Packaging-smoke jobs green in Actions</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Test download and install on at least one platform</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Publish</strong> the draft on GitHub</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Confirm docs site updated after the version commit landed on <code>main</code> (<a href="../ci-cd/#docs-docsyml">docs workflow</a>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Announce (Discord <code>#mesh-client</code>, etc.)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Close milestone if used</li>
+</ul>
+<hr />
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="release-workflow-fails-on-one-platform">Release workflow fails on one platform<a class="headerlink" href="#release-workflow-fails-on-one-platform" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Inspect the failed job log in Actions</li>
+<li>Platform failures are often native-module or packaging related</li>
+<li>Fix on <code>main</code>, then cut a new patch release (<code>pnpm run release patch</code>)</li>
+</ul>
+<h3 id="upload-to-draft-release-fails">Upload to draft release fails<a class="headerlink" href="#upload-to-draft-release-fails" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Confirm the workflow job has <code>contents: write</code> and <code>RELEASE_ID</code> is set from <code>prepare-github-release</code></li>
+<li>Uploads use <code>GITHUB_TOKEN</code> as <code>GH_TOKEN</code> via <code>ci-upload-release-assets.mjs</code>; forked or restricted workflows may lack upload permission</li>
+<li>Tag CI builds with <code>dist:*</code> (<code>--publish never</code>) and attaches by id — do <strong>not</strong> reintroduce <code>dist:*:publish</code> in <code>release.yaml</code> (electron-builder <code>POST /releases</code> forks drafts)</li>
+</ul>
+<h3 id="duplicate-draft-releases-for-one-tag">Duplicate draft releases for one tag<a class="headerlink" href="#duplicate-draft-releases-for-one-tag" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Historically caused when parallel <code>dist:*:publish</code> / softprops jobs each <code>POST</code>ed a draft after a List Releases miss. Current CI: only <code>prepare-github-release</code> may create (<code>MESH_CLIENT_ALLOW_DRAFT_CREATE=1</code>); builds/Flatpak upload by id; Flatpak waits with <code>ci-wait-github-draft-release.mjs</code>.</li>
+<li><strong>Draft tag detach (<code>untagged-*</code>):</strong> GitHub can leave a draft on <code>untagged-&lt;hex&gt;</code> while the annotated <code>vX.Y.Z</code> tag still exists (common during the upload window). Prepare asserts/repairs <code>tag_name</code> with the release job's scoped <code>GITHUB_TOKEN</code>, finalize consolidates again, and both paths <strong>delete orphan <code>refs/tags/untagged-*</code></strong> after a successful repair so Publish cannot rebind to a leftover placeholder. Refs that are still a live release’s <code>tag_name</code> (e.g. historical 5.27.0) are never deleted.</li>
+<li><strong><code>finalize-github-release</code></strong> runs consolidation then <strong><code>ci-verify-github-draft-release.mjs</code></strong>, which <strong>fails the workflow</strong> if the draft <code>tag_name</code> is still <code>untagged-*</code> <strong>or</strong> any matching release for that version is still on an untagged placeholder. Do not publish until that job is green and the draft tag shows <code>vX.Y.Z</code>.</li>
+<li><strong>Manual publish repair:</strong> if a published release still needs repair, dispatch <code>.github/workflows/repair-published-release-tag.yaml</code> from <code>main</code> with the release tag/name. Its <code>release-repair</code> environment requires maintainer approval and then reattaches <code>vX.Y.Z</code> via <code>scripts/repair-published-release-tag.mjs</code>.</li>
+<li><strong>Finalize PATCH 403 (<code>Resource not accessible by integration</code>):</strong> the release job's scoped <code>GITHUB_TOKEN</code> must repair the protected release tag; tag repair must succeed or the verify step fails. Do not restore a repository-wide credential fallback.</li>
+<li><strong>Assets still split (external fork):</strong> <code>finalize-github-release</code> merges via <code>ci-ensure-github-draft-release.mjs</code>; outside CI run <code>node scripts/consolidate-github-release-duplicates.mjs --tag vX.Y.Z</code> (requires <code>GH_TOKEN</code>).</li>
+<li><strong>Do not force-move the <code>v*</code> tag while a release workflow is in progress.</strong> Retagging starts another run and (with workflow concurrency) cancels the in-flight build; smoke jobs also assume a stable workflow <code>github.sha</code>.</li>
+<li><strong>Smoke tests fail with “ref does not point to the expected commit”:</strong> the tag was moved after the workflow started. Re-run failed jobs only after the tag matches the run’s <code>headSha</code>, or merge the checkout <code>ref: ${{ github.sha }}</code> fix and trigger a fresh tag run.</li>
+</ul>
+<h3 id="tag-already-exists">Tag already exists<a class="headerlink" href="#tag-already-exists" title="Permanent link">&para;</a></h3>
+<p>To re-cut the same version (only before wide distribution):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>tag<span class="w"> </span>-d<span class="w"> </span>vX.Y.Z
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>:refs/tags/vX.Y.Z
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># Delete the GitHub release if created</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Fix issue, then pnpm run release again or re-tag manually</span>
+</code></pre></div>
+<h3 id="build-fails-due-to-native-modules">Build fails due to native modules<a class="headerlink" href="#build-fails-due-to-native-modules" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pnpm<span class="w"> </span>run<span class="w"> </span>rebuild
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>pnpm<span class="w"> </span>run<span class="w"> </span>build
+</code></pre></div>
+<p>Release jobs run <code>pnpm run rebuild</code> automatically before <code>dist:*</code>.</p>
+<h3 id="flatpak-publish-did-not-attach-bundles">Flatpak publish did not attach bundles<a class="headerlink" href="#flatpak-publish-did-not-attach-bundles" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Confirm <code>flatpak.yaml</code> <strong><code>publish</code></strong> job ran on the tag (not only manual <code>workflow_dispatch</code>)</li>
+<li>Publish waits for the prepare draft, then uploads with <code>ci-upload-release-assets.mjs</code> + <code>RELEASE_ID</code> (it does not create or publish a release)</li>
+</ul>
+<hr />
+<h2 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h2>
+<p>If a published release has critical issues:</p>
+<ol>
+<li>Do not delete the release (users may already have downloads)</li>
+<li>Ship a patch release with the fix</li>
+<li>Document the known issue in release notes</li>
+<li>Yank only if caught immediately and distribution was minimal</li>
+</ol>
+<hr />
+<h2 id="manual-release-emergency">Manual release (emergency)<a class="headerlink" href="#manual-release-emergency" title="Permanent link">&para;</a></h2>
+<p>If automation fails and you must upload artifacts by hand:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pnpm<span class="w"> </span>run<span class="w"> </span>build
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>pnpm<span class="w"> </span>run<span class="w"> </span>dist:mac<span class="w"> </span><span class="c1"># or dist:linux / dist:win on the target OS</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># Optional: node scripts/verify-*-packaging.mjs after dist</span>
+</code></pre></div>
+<p>Upload outputs from <code>release/</code> to a manually created GitHub Release. This bypasses CI smoke tests — use only as a last resort.</p>
+<hr />
+<h2 id="related-docs">Related docs<a class="headerlink" href="#related-docs" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../ci-cd/">CI/CD Workflows</a></li>
+<li><a href="../development-environment/#package-distributables">Development Guide — packaging scripts</a></li>
+<li><a href="../development-environment/#building-a-flatpak-linux">Flatpak local build</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 11, 2026 14:24:34 UTC">October 11, 2026</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; Colorado Mesh volunteers. Mesh-Client is GPL-3.0-or-later.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/Colorado-Mesh/mesh-client" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://discord.com/invite/McChKR5NpS" target="_blank" rel="noopener" title="Discord" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1.1s-.6.4-.8.8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2C162.5 39 122.2 51.5 84.1 69c-.3.1-.6.4-.8.7C7.1 183.5-13.8 294.6-3.6 404.2c0 .3.1.5.2.8s.3.4.5.6c44.4 32.9 94 58 146.8 74.2.4.1.8.1 1.1 0s.7-.4.9-.7c11.3-15.4 21.4-31.8 30-48.8.1-.2.2-.5.2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6.2-.9.3-.5.6-.7c3.1-2.3 6.2-4.7 9.1-7.1.3-.2.6-.4.9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1.7-.2 1-.2s.7.2.9.4c2.9 2.4 6 4.9 9.1 7.2.2.2.4.4.6.7s.2.6.2.9-.1.6-.3.9-.4.5-.6.6c-14.7 8.6-30 15.9-45.9 21.8-.2.1-.5.2-.7.4s-.3.4-.4.7-.1.5-.1.8.1.5.2.8c8.8 17 18.8 33.3 30 48.8.2.3.6.6.9.7s.8.1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2.2-.2.4-.4.5-.6s.2-.5.2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2m195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://coloradomesh.org/" target="_blank" rel="noopener" title="Colorado Mesh" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
